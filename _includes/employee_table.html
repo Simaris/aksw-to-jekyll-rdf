@@ -1,0 +1,16 @@
+<ol class="resourcematrix clearfix">
+    {% assign oddEven = 0 %}
+    {% for result in include.employee_list %}
+        {% if oddEven == 0 %}
+            <li class="even" about="{{result.resUri}}">
+            {% include employee_card_view.html personUri=result.resUri %}
+            </li>
+            {% assign oddEven = 1 %}
+        {% else %}
+            <li class="odd" about="{{result.resUri}}">
+            {% include employee_card_view.html personUri=result.resUri %}
+            </li>
+            {% assign oddEven = 0 %}            
+        {% endif %}
+    {% endfor %}
+</ol>

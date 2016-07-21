@@ -1,0 +1,70 @@
+tr{
+    
+}
+
+tr td{
+    height: 120px;
+    width: 500px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: lightgray;
+}
+
+td img{
+    float: left;
+    height: 100%;
+    max-width: 100%;
+    width: auto;
+}
+
+.left-float{
+    float: left;
+    font-size:70%;
+}
+
+.left-float-img{
+    float: left;
+    height: 100%;
+    max-height: 100%;
+    width: 32%;
+}
+
+.right-float{
+    float: right;
+}
+
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+    display: block;
+}
+
+#header{
+    position:relative;
+}
+
+#sidecontent, #search {
+    margin-left: 66.737%;
+    padding-left: 2.308em;
+    width: auto;
+}
+
+a img{
+    max-height: 75px;
+}
+
+.page_margins {
+    font-size: 0.813em;
+    margin: 0 auto;
+    max-width: 90%;
+    min-width: 800px;
+    width: 86.692em;
+}
+
+#content {
+    clear: left;
+    float: left;
+    margin-bottom: 5.385em;
+    margin-top: 4.423em;
+    position: relative;
+    width: 66.737%;
+    z-index: 100;
+}

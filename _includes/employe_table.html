@@ -1,0 +1,54 @@
+    <table class="discrete">
+        {% assign oddEven=0 %}
+        {% for person in include.person_list %}                
+            {% if oddEven == 0 %}
+            <tr> 
+                <td class="Odd">     
+                    <span class="left-float-img"><img src="{{person.sub | rdf_property: 'http://xmlns.com/foaf/0.1/depiction'}}"></span>
+                    <span class="left-float">
+                        <dfn class="">
+                            {{person.sub | rdf_property: 'http://xmlns.com/foaf/0.1/name'}}
+                        </dfn>  
+                        <dl>
+                            <dt>
+                                Email:
+                            </dt>
+                            <dd>
+                                {{person.sub | rdf_property: 'http://xmlns.com/foaf/0.1/mbox'}}
+                            </dd>
+                            <dt>Phone:</dt>
+                            <dd>{{person.sub | rdf_property: 'http://xmlns.com/foaf/0.1/phone'}}</dd>
+                        </dl>
+                        <a href="{{person.sub | rdf_property: 'http://xmlns.com/foaf/0.1/homepage'}}">Homepage</a>
+                    </span>
+                    
+                    
+                </td>
+            {% assign oddEven=1 %}
+            {% else %}
+                <td class="Even">
+                    <span class="left-float-img"><img src="{{person.sub | rdf_property: 'http://xmlns.com/foaf/0.1/depiction'}}"></span>
+                    <span class="left-float">
+                        <dfn class="">
+                            {{person.sub | rdf_property: 'http://xmlns.com/foaf/0.1/name'}}
+                        </dfn>  
+                        <dl>
+                            <dt>
+                                Email:
+                            </dt>
+                            <dd>
+                                {{person.sub | rdf_property: 'http://xmlns.com/foaf/0.1/mbox'}}
+                            </dd>
+                            <dt>Phone:</dt>
+                            <dd>{{person.sub | rdf_property: 'http://xmlns.com/foaf/0.1/phone'}}</dd>
+                        </dl>
+                        <a href="{{person.sub | rdf_property: 'http://xmlns.com/foaf/0.1/homepage'}}">Homepage</a>
+                    </span>
+                    
+                    
+                </td>
+            </tr>
+            {% assign oddEven=0 %}
+            {% endif %}
+        {% endfor %}
+    </table>

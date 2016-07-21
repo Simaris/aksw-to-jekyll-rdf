@@ -1,0 +1,46 @@
+---
+layout: default
+---
+
+<div class="home">
+        {% assign query= 'SELECT DISTINCT ?sub WHERE{  ?group <http://xmlns.com/foaf/0.1/member> ?sub .  ?group <http://purl.org/vocab/aiiso/schema#part_of> <http://aksw.org/Groups/AKSW> .  ?sub a <http://xmlns.com/foaf/0.1/Person> .  OPTIONAL {    ?excludeA a <http://aksw.org/StudentWorker> .    filter (?sub = ?excludeA)   } filter(!bound(?excludeA)) .  OPTIONAL {    ?excludeB a <http://aksw.org/Alumni> .    filter (?sub = ?excludeB)   } filter(!bound(?excludeB)) .  OPTIONAL {    ?sub <http://xmlns.com/foaf/0.1/familyName> ?familyName   }} ORDER BY ASC(?familyName)' %}
+        {% assign resultset = page.rdf | sparql_query: query %}
+        <h3>The following individuals belong to AKSW</h3>
+        {% include employe_table.html person_list=resultset %}
+        
+        {% assign query= 'SELECT ?sub WHERE{ ?sub a <http://aksw.org/StudentWorker> .  OPTIONAL {     ?exclude a <http://aksw.org/Alumni>.    filter (?sub = ?exclude)   }   OPTIONAL {    ?sub <http://xmlns.com/foaf/0.1/familyName> ?familyName  }   filter(!bound(?exclude) )} ORDER BY ASC(?familyName) ' %}
+        {% assign resultset = page.rdf | sparql_query: query %}
+        <h3>The following Students work with us</h3>
+        <ul>
+            {% for people in resultset %}
+            <li>
+                <a href="{{people.sub.page_url}}">{{people.sub | rdf_property: 'http://xmlns.com/foaf/0.1/name'}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% assign query= 'SELECT ?sub WHERE{  ?sub a <http://aksw.org/Alumni> .  OPTIONAL {     ?exclude a <http://aksw.org/StudentWorker>.    filter (?sub = ?exclude)   }   OPTIONAL {    ?sub <http://xmlns.com/foaf/0.1/familyName> ?familyName   }  filter(!bound(?exclude) )} ORDER BY ASC(?familyName) ' %}
+        {% assign resultset = page.rdf | sparql_query: query %}
+        <h3>We had following Alumni working with us</h3>
+        {% include employe_table.html person_list=resultset %}
+        
+        {% assign query= 'SELECT ?sub WHERE{  ?sub a <http://aksw.org/Alumni> ; a <http://aksw.org/StudentWorker>.  OPTIONAL {    ?sub <http://xmlns.com/foaf/0.1/familyName> ?familyName   }  } ORDER BY ASC(?familyName)' %}
+        {% assign resultset = page.rdf | sparql_query: query %}
+        <h3>We had following Students working with us</h3>
+        <ul>
+            {% for people in resultset %}
+            <li>
+                <a href="{{people.sub.page_url}}">{{people.sub | rdf_property: 'http://xmlns.com/foaf/0.1/name'}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+
+
+    <h1>Rdf Data</h1>
+    {{page.rdf}}
+    <table class="discrete">
+        {% for rdf in page.rdf %}
+        <tr>{{rdf}}</tr>
+        {% endfor %}
+    </table>
+    
+</div>

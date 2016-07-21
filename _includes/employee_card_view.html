@@ -1,0 +1,25 @@
+{% assign person = include.personUri %}
+<div class="item">
+    <dfn class="label">{{person}}</dfn>
+    <span class="depiction">
+        <img src="{{person | rdf_property: 'http://xmlns.com/foaf/0.1/depiction'}}" resource="{{person | rdf_property: 'http://xmlns.com/foaf/0.1/depiction'}}" property="foaf:depiction" alt="Depiction of {{person}}">
+    </span>
+    <dl class="extended">
+        <dt>
+            <span class="icon icon-email">Email</span>
+        </dt>
+        <dd>
+            <a href="{{person | rdf_property: 'http://xmlns.com/foaf/0.1/mbox'}}">{{person | rdf_property: 'http://xmlns.com/foaf/0.1/mbox'}}</a>
+        </dd>
+        <dt>
+            <span class="icon icon-phone">Phone</span>
+        </dt>
+        <dd>
+            <a href="{{person | rdf_property: 'http://xmlns.com/foaf/0.1/phone'}}">{{person | rdf_property: 'http://xmlns.com/foaf/0.1/phone'}}</a>
+        </dd>
+    </dl>
+    <a class="seealso" href="{{person.page_url}}">
+        contact details
+        <span class="hideme">{{person}}</span>
+    </a>
+</div>

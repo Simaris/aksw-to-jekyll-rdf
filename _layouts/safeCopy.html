@@ -1,0 +1,146 @@
+---
+layout: aksw_org_default
+---
+
+<header class="intro">
+    <h1>Agile Knowledge Engineering and Semantic Web (AKSW)</h1>
+</header>
+<div classs="content" property="http://ns.ontowiki.net/SysOnt/Site/content">
+    <nav class="nav-sidelinks">
+        <ul>
+            <li><strong class="headline">current funded projects</strong>                
+            {% assign query= 'SELECT ?sub WHERE{ ?sub a <http://aksw.org/schema/FundedProject>. OPTIONAL {    ?sub <http://aksw.org/schema/status> ?status   }  FILTER (?status != "finished")}' %}
+            {% assign resultset = page.rdf | sparql_query: query %}
+                <ul>
+                {% assign oddEven = 0 %}
+                {% for result in resultset %}
+                    {% if oddEven == 0 %}
+                        <li class="odd" about="projects:{{result.sub | split: '/' | last}}">
+                            <a href="{{result.sub}}">{{result.sub | split: '/' | last}}</a>
+                        </li>
+                        {% assign oddEven = 1 %}
+                    {% else %}
+                        <li class="even" about="projects:{{result.sub | split: '/' | last}}">
+                            <a href="{{result.sub}}">{{result.sub | split: '/' | last}}</a>
+                        </li>
+                        {% assign oddEven = 0 %}
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </li>
+            <li><strong class="headline">featured projects</strong>
+            {% assign query= "SELECT ?sub WHERE { ?sub <http://aksw.org/schema/promoted> '1'^^xsd:integer.}" %}
+            {% assign resultset = page.rdf | sparql_query: query %}
+                <ul>
+                {% assign oddEven = 0 %}
+                {% for result in resultset %}
+                {{query}}
+                    {% if oddEven == 0 %}
+                        <li class="odd" about="projects:{{result.sub | split: '/' | last}}">
+                            <a href="{{result.sub}}">{{result.sub | split: '/' | last}}</a>
+                        </li>
+                        {% assign oddEven = 1 %}
+                    {% else %}
+                        <li class="even" about="projects:{{result.sub | split: '/' | last}}">
+                            <a href="{{result.sub}}">{{result.sub | split: '/' | last}}</a>
+                        </li>
+                        {% assign oddEven = 0 %}
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <p>
+    The Research Group
+    <strong>Agile Knowledge Engineering and Semantic Web (AKSW)</strong>
+    is hosted by the Chair of
+    <a href="http://bis.informatik.uni-leipzig.de">Business Information Systems</a>
+    (BIS) of the
+    <a href="http://www.informatik.uni-leipzig.de">Institute of Computer Science</a>
+    (IfI) /
+    <a href="http://www.uni-leipzig.de">University of Leipzig</a>
+    as well as the
+    <a href="http://infai.org">Institute for Applied Informatics</a>
+    (InfAI).
+    </p>
+    <h1>Goals</h1>
+    <ul>
+    <li>Development of methods, tools and applications for adaptive Knowledge Engineering in the context of the Semantic Web</li>
+    <li>Research of underlying Semantic Web technologies and development of fundamental Semantic Web tools and applications</li>
+    <li>Maturation of strategies for fruitfully combining the Social Web paradigms with semantic knowledge representation techniques</li>
+    </ul>
+    <p>
+    AKSW is committed to the
+    <a href="http://en.wikipedia.org/wiki/Free_software_movement">free software</a>
+    ,
+    <a href="http://www.opensource.org">open source</a>
+    ,
+    <a href="http://www.soros.org/openaccess">open access</a>
+    and
+    <a href="http://okfn.org">open knowledge</a>
+    movements.
+    </p>
+    <h1>Jobs</h1>
+    <p>
+    We are always glad about seeing new people in our group. AKSW currently has some open job offers. Please find further information on our
+    <a href="http://aksw.org/Jobs">Jobs</a>
+    -Resource.
+    </p>
+    <h1>Projects</h1>
+    <p>
+    AKSW has launched a number of high-impact R&D projects. Please look at the
+    <a href="/Projects">projects page</a>
+    for a comprehensive description of AKSW's funded as well as community, open source and past projects.
+    </p>
+    <h1>Demos</h1>
+    <p>Please have a look at our demos:</p>
+    <!-- toDo: Script in gang bringen -->
+    <div class="demowheel rs-carousel rs-carousel-horizontal rs-carousel-items-auto" aria-disabled="false">
+        <div class="rs-carousel-mask">
+            {% assign query= 'SELECT ?sub WHERE{ ?sub a <http://aksw.org/schema/Demo>.}' %}
+            {% assign resultset = page.rdf | sparql_query: query %}
+                <ul>
+                {% assign incrementLimit = 2 %}
+                {% assign incrementA = 0 %}
+                {% assign oddEven = 0 %}
+                {% for result in resultset %}
+                    {% if incrementA < incrementLimit %}
+                        <li class="odd rs-carousel-item" about="{{result.sub}}">
+                            <h2 class="demowheel-title">
+                                <a class="" href="{{result.sub}}">{{result.sub.name}}</a>
+                                <span class="hookline" property="http://aksw.org/schema/hookline">{{result.sub | rdf_property: 'http://aksw.org/schema/hookline'}}</span>
+                            </h2>
+                            <a class="demowheel-image" href="{{result.sub}}">
+                                <img src="{{result.sub | rdf_property: 'http://open.vocab.org/terms/screenshot'}}" resource="{{result.sub | rdf_property: 'http://open.vocab.org/terms/screenshot'}}" about="{{result.sub}}" alt="screenshot">
+                            </a>
+                        </li>
+                        {% increment incrementA %}
+                    {% else %}
+                        <li class="even rs-carousel-item" about="{{result.sub}}">
+                            <h2 class="demowheel-title">
+                                <a class="" href="{{result.sub}}">{{result.sub.name}}</a>
+                                <span class="hookline" property="http://aksw.org/schema/hookline">{{result.sub | rdf_property: 'http://aksw.org/schema/hookline'}}</span>
+                            </h2>
+                            <a class="demowheel-image" href="{{result.sub}}">
+                                <img src="{{result.sub | rdf_property: 'http://open.vocab.org/terms/screenshot'}}" resource="{{result.sub | rdf_property: 'http://open.vocab.org/terms/screenshot'}}" about="{{result.sub}}" alt="screenshot">
+                            </a>
+                        </li>
+                        {% assign oddEven = 0 %}
+                    {% endif %}
+                {% endfor %}
+                </ul>
+                <ol class="rs-carousel-pagination">
+                {% assign number = 1 %}    
+                {% for result in resultset %}
+                    <li class="rs-carousel-pagination-link">
+                        <a href="#page-{{number}}">{{number}}</a>
+                    </li>
+                    {% increment number %}
+                {% endfor %}
+                </ol>
+                <a class="rs-carousel-action-prev" href="#">Previous</a>
+                <a class="rs-carousel-action-next" href="#">Next</a>
+        </div>
+    </div>
+</div>

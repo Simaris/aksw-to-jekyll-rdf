@@ -1,0 +1,63 @@
+---
+layout: aksw_org_default
+---
+<header class="intro">
+    <h1>Team</h1>
+</header>
+<div class="content" property="http://ns.ontowiki.net/SysOnt/Site/content">
+    <nav class="nav-sidelinks">
+        {% assign query= 'SELECT ?resUri WHERE{?group <http://xmlns.com/foaf/0.1/member> ?resUri . ?group <http://purl.org/vocab/aiiso/schema#part_of> <http://aksw.org/Groups/AKSW> .  OPTIONAL {    ?exclude a <http://aksw.org/Alumni> .    filter (?resUri = ?exclude)   }  filter(!bound(?exclude)) .  OPTIONAL {    ?resUri <http://xmlns.com/foaf/0.1/familyName> ?familyName   }}' %}
+        {% assign resultset = page.rdf | sparql_query: query %}
+        <ul>
+            <li><strong class="headline">people</strong>
+                {% include nav-sidelinks.html entity_list=resultset %}
+            </li>
+        </ul>
+    </nav>
+    <p><strong>The following individuals belong to AKSW</strong></p>
+    {% assign query= 'SELECT ?resUri WHERE {  ?group <http://xmlns.com/foaf/0.1/member> ?resUri .  ?group <http://purl.org/vocab/aiiso/schema#part_of> <http://aksw.org/Groups/AKSW> .  ?resUri a <http://xmlns.com/foaf/0.1/Person> .  OPTIONAL {    ?excludeA a <http://aksw.org/StudentWorker> .    filter (?resUri = ?excludeA)   }   filter(!bound(?excludeA)) .  OPTIONAL {     ?excludeB a <http://aksw.org/Alumni> .    filter (?resUri = ?excludeB)   } filter(!bound(?excludeB)) .  OPTIONAL {    ?resUri <http://xmlns.com/foaf/0.1/familyName> ?familyName   }}' %}
+    {% assign resultset2 = page.rdf | sparql_query: query %}
+    {% include employee_table.html employee_list=resultset2%}
+    <p><strong>The following Students work with us</strong></p>
+    <ul>
+        {% assign query= 'SELECT ?resUri WHERE{  ?resUri a <http://aksw.org/StudentWorker> .  OPTIONAL {    ?exclude a <http://aksw.org/Alumni>.    filter (?resUri = ?exclude)   }  OPTIONAL {    ?resUri <http://xmlns.com/foaf/0.1/familyName> ?familyName   }  filter(!bound(?exclude) )}' %}
+        {% assign resultset = page.rdf | sparql_query: query %}
+        {% assign oddEven = 0 %}
+        {% for person in resultset %}
+            {% if oddEven == 0 %}
+                <li class="even" about="{{person.resUri.page_url}}">
+                    <a href="{{person.resUri}}">{{person.resUri.name}}</a>
+                </li>
+                {% assign oddEven = 1 %}
+            {% else %}
+                <li class="odd" about="{{person.resUri.name}}">
+                    <a href="{{person.resUri}}">{{person.resUri.name}}</a>
+                </li>
+                {% assign oddEven = 0 %}            
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <p><strong>We had following Alumni working with us</strong></p>
+    {% assign query= 'SELECT ?resUri WHERE{  ?resUri a <http://aksw.org/Alumni> .  OPTIONAL {    ?exclude a <http://aksw.org/StudentWorker>.    filter (?resUri = ?exclude)   }  OPTIONAL {    ?resUri <http://xmlns.com/foaf/0.1/familyName> ?familyName   }  filter(!bound(?exclude) )}' %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    {% include employee_table.html employee_list=resultset%}
+    <ul>
+        {% assign query= 'SELECT ?resUri WHERE{  ?resUri a <http://aksw.org/Alumni> ; a <http://aksw.org/StudentWorker>.  OPTIONAL {    ?resUri <http://xmlns.com/foaf/0.1/familyName> ?familyName   }}' %}
+        {% assign resultset = page.rdf | sparql_query: query %}
+        {% assign oddEven = 0 %}
+        {% for person in resultset %}
+            {% if oddEven == 0 %}
+                <li class="even" about="{{person.resUri.page_url}}">
+                    <a href="{{person.resUri}}">{{person.resUri.name}}</a>
+                </li>
+                {% assign oddEven = 1 %}
+            {% else %}
+                <li class="odd" about="{{person.resUri.name}}">
+                    <a href="{{person.resUri}}">{{person.resUri.name}}</a>
+                </li>
+                {% assign oddEven = 0 %}            
+            {% endif %}
+        {% endfor %}
+    </ul>
+</div>
+

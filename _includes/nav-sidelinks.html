@@ -1,0 +1,16 @@
+<ul>
+    {% assign oddEven = 0 %}
+    {% for result in include.entity_list %}
+        {% if oddEven == 0 %}
+        <li class="odd" about="projects:{{result.resUri | split: '/' | last}}">
+            <a href="{{result.resUri}}">{{result.resUri | split: '/' | last}}</a>
+        </li>
+            {% assign oddEven = 1 %}
+        {% else %}
+        <li class="even" about="projects:{{result.resUri | split: '/' | last}}">
+            <a href="{{result.resUri}}">{{result.resUri | split: '/' | last}}</a>
+        </li>
+             {% assign oddEven = 0 %}
+        {% endif %}
+    {% endfor %}
+</ul>
