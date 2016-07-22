@@ -1,0 +1,31 @@
+---
+layout: aksw_org_default
+---
+<header class="intro">
+    <h1>Groups</h1>
+</header>
+<div class="content" property="http://ns.ontowiki.net/SysOnt/Site/content">
+    <nav class="nav-sidelinks">
+        {% assign query= 'SELECT ?resUri WHERE{?group <http://xmlns.com/foaf/0.1/member> ?resUri . ?group <http://purl.org/vocab/aiiso/schema#part_of> <http://aksw.org/Groups/AKSW> .  OPTIONAL {    ?exclude a <http://aksw.org/Alumni> .    filter (?resUri = ?exclude)   }  filter(!bound(?exclude)) .  OPTIONAL {    ?resUri <http://xmlns.com/foaf/0.1/familyName> ?familyName   }}' %}
+        {% assign resultset = page.rdf | sparql_query: query %}
+        <ul>
+            <li><strong class="headline">people</strong>
+                {% include nav-sidelinks.html entity_list=resultset %}
+            </li>
+        </ul>
+    </nav>
+    <p>
+        <img src="http://wiki.aksw.org/_media/files/team/aksw_structure.png" width="640px" />
+    </p>
+    <p>
+        If you would like to contact the above team, please write an email to <a href=\"mailto:lead-aksw@informatik.uni-leipzig.de\">lead-aksw@informatik.uni-leipzig.de</a>. If you would like to contact all persons listed below, please write an email to <a href=\"mailto:aksw-core@informatik.uni-leipzig.de\">aksw-core@informatik.uni-leipzig.de</a>. For contacting individual persons, please visit their work pages below.
+    </p>
+    <h1>The following subgroups belong to AKSW</h1>
+    <div class="query-list-abstract">
+        {% assign query= 'SELECT ?resUri WHERE{?resUri <http://purl.org/vocab/aiiso/schema#part_of> <http://aksw.org/Groups/AKSW> }' %}
+        {% assign resultset = page.rdf | sparql_query: query %}
+        {% for groupRes in resultset %}
+            {% include groups_template.html group=groupRes.resUri %}
+        {% endfor %}
+    </div>
+</div>
