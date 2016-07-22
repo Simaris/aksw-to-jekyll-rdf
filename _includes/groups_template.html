@@ -1,0 +1,8 @@
+{% assign group=include.group %}
+<div class="abstract" about="groups:{{group.name}}">
+    <h2><a href="">{{group | rdf_property: 'http://www.w3.org/2000/01/rdf-schema#label'}}</a></h2> <!-- toDo: set href -->
+</div>
+<p class="abstract" content="{{group | rdf_property: 'http://purl.org/dc/terms/abstract'}}" property="http://purl.org/dc/terms/abstract">
+    {{group | rdf_property: 'http://purl.org/dc/terms/abstract'}}                                           <!-- toDo: see presentation Knowledge Integration and Language Technologies -->
+    <a href="">Read more about {{group | rdf_property: 'http://www.w3.org/2000/01/rdf-schema#label'}}</a> <!-- toDo: set href -->
+</p>

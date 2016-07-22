@@ -1,0 +1,21 @@
+<div class="query-list-abstract">
+    {% for resObj in include.objList %}
+    <div class="abstract abstract-with-logo" about="projects:{{resObj.resUri | split: '/' | last}}">
+        <h2>
+            <a href="">
+                {{resObj.resUri | split: '/' | last}}
+            </a>
+        </h2>                               <!-- toDo: set href -->
+        <a href="">
+            <div class="logo">
+                <img class="logo" src="{{resObj.resUri | rdf_property: 'http://xmlns.com/foaf/0.1/logo'}}" resource="{{resObj.resUri | rdf_property: 'http://xmlns.com/foaf/0.1/logo'}}" property="foaf:logo" about="projects:{{resObj.resUri | split: '/' | last}}" alt="logo">
+                
+            </div>
+        </a>
+        <p class="abstract" content="{{resObj.resUri | rdf_property: 'http://purl.org/dc/terms/abstract'}}" property="http://purl.org/dc/terms/abstract">
+            {{resObj.resUri | rdf_property: 'http://purl.org/dc/terms/abstract'}}                                           
+            <a href="">Read more about {{resObj.resUri | rdf_property: 'http://www.w3.org/2000/01/rdf-schema#label'}}</a> <!-- toDo: set href -->
+        </p>
+    </div>
+    {% endfor %}
+</div>

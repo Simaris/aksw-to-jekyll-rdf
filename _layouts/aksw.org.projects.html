@@ -1,0 +1,99 @@
+---
+layout: aksw_org_default
+---
+
+<header class="intro">
+    <h1>Projects</h1>
+</header>
+<div class="content" property="http://ns.ontowiki.net/SysOnt/Site/content">
+    <script src="http://aksw.org/extensions/site/js/jquery.tableofcontents.js" type="text/javascript"></script>
+    <p>
+        <script charset="utf-8" type="text/javascript">
+            $(document).ready(function(){
+                $.TableOfContents.defaultOptions.startLevel = "1";
+                $.TableOfContents.defaultOptions.depth      = "1";
+                $("#toc").tableOfContents($("div.content[property='site:content']"));
+            })
+        </script>
+    </p>
+    <details>
+        <summary>Table of Contents</summary>
+        <ul id="toc"></ul>
+    </details>
+    <p></p>
+    <h1>Funded Projects</h1>
+    <p></p>
+    {% assign query= "SELECT ?resUri WHERE{  ?resUri a <http://aksw.org/schema/FundedProject>; <http://aksw.org/schema/status> 'active' .}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    <nav class="nav-sidelinks">
+        {% include nav-sidelinks.html entity_list= resultset %}
+    </nav>
+    <p></p>
+    <p>ASKW is currently funded with the following regional, national and European research projects: </p>       
+    {% assign query= "SELECT ?resUri WHERE{  ?resUri a <http://aksw.org/schema/FundedProject>; <http://aksw.org/schema/status> 'active' .}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    {% include query-list-abstract.html objList= resultset %}
+    <p></p>
+            
+            
+    <p>AKSW was formerly funded with the following regional, national and European research projects: </p>
+    {% assign query= "SELECT ?resUri WHERE{  ?resUri a <http://aksw.org/schema/FundedProject>; <http://aksw.org/schema/status> 'finished' .}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    {% include link-list.html entity_list= resultset %}
+    
+    
+    <p></p>
+    <h1> Open Source Projects</h1>
+    <p></p>
+    {% assign query= "SELECT ?resUri WHERE {  ?resUri a <http://aksw.org/schema/OpenSourceProject>.}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    <nav class="nav-sidelinks">
+        {% include nav-sidelinks.html entity_list= resultset %}
+    </nav>
+    <p></p>
+    <p>AKSW has launched a number of high-impact R&D OpenSource projects.</p>
+    {% assign query= "SELECT ?resUri WHERE {  ?resUri a <http://aksw.org/schema/OpenSourceProject>.}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    {% include query-list-abstract.html objList= resultset %}
+    <p></p>
+    <h1>Community Projects</h1>
+    <p></p>
+    {% assign query= "SELECT ?resUri WHERE {  ?resUri a <http://aksw.org/schema/CommunityProject>.}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    <nav class="nav-sidelinks">
+        {% include nav-sidelinks.html entity_list= resultset %}
+    </nav>
+    <p></p>
+    <p>AKSW has launched a number of high-impact R&D Community projects.</p>
+    {% assign query= "SELECT ?resUri WHERE {  ?resUri a <http://aksw.org/schema/CommunityProject>.}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    {% include query-list-abstract.html objList= resultset %}
+    <p></p>
+    <h1>Dataset Projects</h1>
+    <p></p>
+    {% assign query= "SELECT ?resUri WHERE {  ?resUri a <http://aksw.org/schema/DatasetProject>.}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    <nav class="nav-sidelinks">
+        {% include nav-sidelinks.html entity_list= resultset %}
+    </nav>
+    <p></p>
+    <p>AKSW is publisher or contributer to the following dataset projects.</p>
+    {% assign query= "SELECT ?resUri WHERE {  ?resUri a <http://aksw.org/schema/DatasetProject>.}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    {% include query-list-abstract.html objList= resultset %}
+    <p></p>
+        
+        
+    <h1> Incubator Projects </h1>
+    {% assign query= "SELECT ?resUri WHERE{  ?resUri a <http://aksw.org/schema/IncubatorProject>.}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    {% include link-list.html entity_list= resultset %}
+    <p></p>
+        
+    <h1>Project Alumni </h1>
+    <p>Some projects have reached a stable state, but are currently not actively maintained and further developed.</p>
+    {% assign query= "SELECT ?resUri WHERE{  ?resUri a <http://aksw.org/schema/AlumniProject>.}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    {% include link-list.html entity_list= resultset %}
+    <p></p>
+</div>
