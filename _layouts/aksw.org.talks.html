@@ -1,0 +1,81 @@
+---
+layout: aksw_org_default
+---
+
+<header class="intro">
+    <h1>Talks</h1>
+</header>
+<div class="content" property="http://ns.ontowiki.net/SysOnt/Site/content">
+    {% assign query= "SELECT ?resUri WHERE{  ?resUri a <http://aksw.org/schema/FundedProject>; <http://aksw.org/schema/status> 'active' .}" %}
+    {% assign resultset = page.rdf | sparql_query: query %}
+    <nav class="nav-sidelinks">
+        <ul>
+            <li><strong class="headline">current funded projects</strong>                
+            {% assign query= 'SELECT ?resUri WHERE{ ?resUri a <http://aksw.org/schema/FundedProject>. OPTIONAL {    ?resUri <http://aksw.org/schema/status> ?status   }  FILTER (?status != "finished")}' %}
+            {% assign resultset = page.rdf | sparql_query: query %}
+            {% include nav-sidelinks.html entity_list=resultset%}
+            </li>
+            <li><strong class="headline">featured projects</strong>
+            {% assign query= "SELECT ?resUri WHERE { ?resUri <http://aksw.org/schema/promoted> '1'^^xsd:integer.}" %}
+            {% assign resultset = page.rdf | sparql_query: query %}
+            {% include nav-sidelinks.html entity_list=resultset%}
+            </li>
+        </ul>
+    </nav>
+    <h1>Videolectures</h1>
+    <ul>
+        <li>
+            Sören Auer:
+            <a href="http://videolectures.net/www09_auer_tlwldp/">Triplify - Light-weight Linked Data Publication from Relational Databases</a>
+            , at World Wide Web 2009 Conference
+        </li>
+        <li>
+            Sören Auer:
+            <a href="http://videolectures.net/iswc07_soeren_nwo/">DBpedia: A Nucleus for a Web of Open Data</a>
+            , at International Semantic Web Conference 2007
+        </li>
+        <li>
+            Sören Auer:
+            <a href="http://videolectures.net/iswc06_auer_otssc/">OntoWiki - A Tool for Social, Semantic Collaboration</a>
+            at International Semantic Web Conference 2006
+            </li>
+        </ul>
+    <h1>Talks</h1>
+    <ul>
+        <li>
+            Jens Lehmann, Sören Auer:
+            <a href="http://jens-lehmann.org/files/2009_wod_wikis.odp">Semantic Wikis and the Web of Data</a>
+            (OpenDocument format), invited talk at 1st KYOTO EU project workshop, 2009.
+        </li>
+        <li>
+            Jens Lehmann, Christoph Haase:
+            <a href="http://jens-lehmann.org/files/2009_ilp.pdf">Ideal Downward Refinement in the EL Description Logic</a>
+            , 19th International Conference on Inductive Logic Programming, 2009.
+        </li>
+        <li>
+            Jens Lehmann:
+            <a href="http://jens-lehmann.org/files/2009_aifb.odp">Presentation of AKSW Group and OWL Class Expressions Learning</a>
+            (OpenDocument format), AIFB Karlsruhe, 2009.
+        </li>
+        <li>
+            <a href="http://sites.wiwiss.fu-berlin.de/suhl/bizer/pub/Bizer-etal-WWW2007-DBpedia-Talk.pdf">DBpedia.org - Querying Wikipedia like a Database</a>
+            <a href="http://www2007.org/prog-Developers.php">Developers track</a>
+            at the 16th International World Wide Web Conference (WWW2007), Banff, Canada, May 2007.
+        </li>
+        <li>
+            Jens Lehmann:
+            <a href="http://jens-lehmann.org/files/2007_hybrid_learning_presentation.pdf">Hybrid Learning of Ontology Classes</a>
+            at the 5th International Conference on Machine Learning and Data Mining, 2007.
+        </li>
+        <li>
+            Jens Lehmann:
+            <a href="http://jens-lehmann.org/files/2007_concept_learning_refop_presentation.pdf">ALC Concept Learning with Refinement Operators</a>
+            at the 17th International Conference on Inductive Logic Programming, 2007.
+        </li>
+        <li>
+            <strong>SoftWiki - Agiles Requirements-Engineering für Softwareprojekte mit einer großen Anzahl verteilter Stakeholder.</strong>
+            Statuskonferenz Forschungsoffensive "Software Engineering 2006", 26-28 June 2006, Leipzig.
+            <a href="http://softwiki.de/files/folien_SOFT-WIKI.pdf">Slides as PDF</a>
+        </li>
+    </ul> 
+</div>

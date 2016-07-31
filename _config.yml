@@ -38,3 +38,5 @@ jekyll_rdf:
     "http://aksw.org/Team" : "aksw.org.team.html"
     "http://aksw.org/Groups" : "aksw.org.groups.html"
     "http://aksw.org/Projects" : "aksw.org.projects.html"
+    "http://aksw.org/Events" : "aksw.org.events.html"
+    "http://aksw.org/Presentations" : "aksw.org.talks.html"
