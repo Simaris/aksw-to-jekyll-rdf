@@ -1,0 +1,16 @@
+<ul>
+    {% assign oddEven = 0 %}
+    {% for result in include.links %}
+        {% if oddEven == 0 %}
+            <li class="even" about="{{result.resUri}}"> <!-- toDo: shorten the part in about -->
+            {% include event.link.html link=result.resUri %}
+            </li>
+            {% assign oddEven = 1 %}
+        {% else %}
+            <li class="odd" about="{{result.resUri}}">
+            {% include event.link.html link=result.resUri %}
+            </li>
+            {% assign oddEven = 0 %}            
+        {% endif %}
+    {% endfor %}
+</ul>

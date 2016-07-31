@@ -1,0 +1,31 @@
+---
+layout: aksw_org_default
+---
+
+<header class="intro">
+    <h1>Events</h1>
+    <p class="abstract" property="http://purl.org/dc/terms/abstract">ASKW is or was active in the following events.</p>
+</header>
+<div classs="content" property="http://ns.ontowiki.net/SysOnt/Site/content">
+    <h1>Upcoming Events</h1>
+    <p></p>
+    <nav class="nav-sidelinks">
+        {% assign query= 'SELECT ?resUri WHERE{ ?resUri a <http://schema.org/Event> .?resUri <http://schema.org/startDate> ?startDate .filter(?startDate > now())}' %}
+        {% assign resultset = page.rdf | sparql_query: query %}
+        <ul>
+            <li><strong class="headline">events</strong>
+                {% include nav-sidelinks-events.html entity_list=resultset %}
+            </li>
+        </ul>
+    </nav>
+    <p></p>
+    {% assign query= 'SELECT ?resUri WHERE{ ?resUri a <http://schema.org/Event> .?resUri <http://schema.org/startDate> ?startDate .filter(?startDate > now())}' %}
+    {% assign events = page.rdf | sparql_query: query %}
+    {% include events.list.html links=events %}
+    <p></p>
+    <h1>Past Events</h1>
+    <p></p>
+    {% assign query= 'SELECT ?resUri WHERE{  ?resUri a <http://schema.org/Event> .  ?resUri <http://schema.org/startDate> ?startDate .  filter(now() > ?startDate)}' %}
+    {% assign events = page.rdf | sparql_query: query %}
+    {% include events.list.html links=events %}
+</div>
