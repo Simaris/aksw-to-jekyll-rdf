@@ -1,0 +1,35 @@
+{% assign associate=include.associate %}
+<div class="abstract abstract-with-logo" about="akswpartner:{{associate.name}}">
+    <h2><a href="{{associate | rdf_property: 'http://xmlns.com/foaf/0.1/homepage'}}">{{associate | rdf_property: 'http://www.w3.org/2000/01/rdf-schema#label'}}</a></h2> <!-- toDo: set href -->
+    <a href="{{associate | rdf_property: 'http://xmlns.com/foaf/0.1/homepage'}}">
+        <div class="logo">
+            <img class="logo" src="{{associate | rdf_property: 'http://xmlns.com/foaf/0.1/logo'}}" resource="{{associate | rdf_property: 'http://xmlns.com/foaf/0.1/logo'}}" property="foaf:logo" about="akswpartner:{{associate.name}}" alt="logo {{associate | rdf_property: 'http://www.w3.org/2000/01/rdf-schema#label'}}">
+        </div>
+    </a>
+    <p class="abstract" content="{{associate | rdf_property: 'http://purl.org/dc/terms/abstract'}}" property="http://purl.org/dc/terms/abstract">
+        {{associate | rdf_property: 'http://purl.org/dc/terms/abstract'}}                                           <!-- toDo: see presentation Knowledge Integration and Language Technologies -->
+        <a href="{{associate | rdf_property: 'http://xmlns.com/foaf/0.1/homepage'}}">Read more about {{associate | rdf_property: 'http://www.w3.org/2000/01/rdf-schema#label'}}</a> <!-- toDo: set href -->
+    </p>
+    <p>
+        We are partner in the following project(s) with {{associate | rdf_property: 'http://www.w3.org/2000/01/rdf-schema#label'}} :
+    </p>
+    <ul>
+    {% capture query %} SELECT distinct ?resUri WHERE {  ?resUri <http://aksw.org/schema/partner> <{{associate}}>.} {% endcapture %}    <!-- SELECT ?resUri (GROUP_CONCAT(?project; separator = "|") AS ?proj) WHERE {  ?project <http://aksw.org/schema/partner> ?resUri.} group by ?resUri-->
+    {% assign projects = page.rdf | sparql_query: query %}
+    {% assign oddEven = 0 %}
+    {% for result in projects %}
+        {% if oddEven == 0 %}
+        <li class="odd" about="project:{{result.resUri | split: '/' | last}}"> <!-- toDo: about="events: correct? -->
+            <a href="{{result.resUri}}">{{result.resUri | split: '/' | last}}</a>-<span class="hookline" property="http://aksw.org/schema/hookline">{{result.resUri | rdf_property: 'http://www.w3.org/2000/01/rdf-schema#label'}}</span>
+        </li>
+            {% assign oddEven = 1 %}
+        {% else %}
+        <li class="even" about="events:{{result.resUri | split: '/' | last}}">
+            <a href="{{result.resUri}}">{{result.resUri | split: '/' | last}}</a>-<span class="hookline" property="http://aksw.org/schema/hookline">{{result.resUri | rdf_property: 'http://aksw.org/schema/hookline'}}</span>
+        </li>
+             {% assign oddEven = 0 %}
+        {% endif %}
+    {% endfor %}
+    </ul>
+    <p></p>
+</div>
