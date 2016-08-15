@@ -4,6 +4,7 @@ layout: aksw_org_default
 
 <header class="intro">
     <h1>Talks</h1>
+    <script>$("#talks").addClass("active");</script>
 </header>
 <div class="content" property="http://ns.ontowiki.net/SysOnt/Site/content">
     {% assign query= "SELECT ?resUri WHERE{  ?resUri a <http://aksw.org/schema/FundedProject>; <http://aksw.org/schema/status> 'active' .}" %}
