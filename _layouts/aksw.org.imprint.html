@@ -1,0 +1,82 @@
+---
+layout: aksw_org_default
+---
+
+<header class="intro">
+    <h1>Agile Knowledge Engineering and Semantic Web (AKSW)</h1>
+    <script>$("#imprint").addClass("active");</script>
+</header>
+<div class="content" property="http://ns.ontowiki.net/SysOnt/Site/content">
+    <nav class="nav-sidelinks">
+        <ul>
+            
+            <li><strong class="headline">sub-groups</strong>                
+            {% assign query= 'SELECT * WHERE {?resUri <http://purl.org/vocab/aiiso/schema#part_of> <http://aksw.org/Groups/AKSW>}' %}
+            {% assign resultset = page.rdf | sparql_query: query %}
+            {% include nav-sidelinks-subgroups.html links=resultset %}
+            </li>
+            <li><strong class="headline">current funded projects</strong>                
+            {% assign query= 'SELECT ?resUri WHERE{ ?resUri a <http://aksw.org/schema/FundedProject>. OPTIONAL {    ?resUri <http://aksw.org/schema/status> ?status   }  FILTER (?status != "finished")}' %}
+            {% assign resultset = page.rdf | sparql_query: query %}
+            {% include nav-sidelinks.html entity_list=resultset %}
+            </li>
+            <li><strong class="headline">featured projects</strong>
+            {% assign query= "SELECT ?resUri WHERE { ?resUri <http://aksw.org/schema/promoted> '1'}" %}
+            {% assign resultset = page.rdf | sparql_query: query %}
+            <p>{{query}}</p>
+            {% include nav-sidelinks.html entity_list=resultset %}
+            </li>
+        </ul>
+    </nav>
+    <p>
+        <strong>Dr. Sören Auer</strong>
+    </p>
+    <p>
+        Telefon:
+        <a href="tel:+493419732367">+49 341 97-32367</a>
+        <br>
+        Telefax:
+        <a href="tel:+493419732329">+49 341 97–32329</a>
+        <br>
+        E-Mail:
+        <a href="mailto:auer@informatik.uni-leipzig.de">auer@informatik.uni-leipzig.de</a>
+    </p>
+    <pre>
+        <code>Universität Leipzig Institut für Informatik Abt. Betriebliche Informationssysteme Augustusplatz 10 04109 Leipzig Deutschland </code>
+    </pre>
+    <p>
+        Die Universität Leipzig ist eine Körperschaft des öffentlichen Rechts. Sie wird vertreten durch den Rektor. Weitere Informationen, insbesondere zur Aufsichtsbehörde, finden sich im
+        <a href="http://www.uni-leipzig.de/info/impressum.html">Impressum der Universität Leipzig</a>
+        .
+    </p>
+    <h1>Haftungshinweis</h1>
+    <h2>Haftung für Inhalte</h2>
+    <p>Wir bemühen uns die Inhalte unserer Seite aktuell zu halten. Trotz sorgfältiger Bearbeitung bleibt eine Haftung ausgeschlossen.</p>
+    <p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.</p>
+    <p>Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen. Bei bekannt werden von Rechtsverletzungen, werden wir diese Inhalte umgehend entfernen. Eine diesbezügliche Haftung übernehmen wir erst ab dem Zeitpunkt der Kenntnis einer möglichen Rechtsverletzung.</p>
+    <h2>Haftung für Links</h2>
+    <p>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Für die Inhalte und die Richtigkeit der Informationen verlinkter Websites fremder Informationsanbieter wird keine Gewähr übernommen.</p>
+    <p>Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße OHNE BEANSTANDUNG überprüft. Bei bekannt werden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
+    <h2>Urheberrecht</h2>
+    <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.</p>
+    <h2>Datenschutz</h2>
+    <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich. Eine Vertraulichkeit im Hinblick auf die Datenschutzbestimmungen wird nur unter der vorstehenden Einschränkung gewährleistet. Insbesondere sollen alle Mitteilungen von personenbezogenen Daten über das Internet nur erfolgen, soweit nicht Rechte Dritter berührt werden. Es sei denn der Dritte hat in Kenntnis der vorstehenden Sicherheitslücken ebenfalls seine Zustimmung erklärt. Eine Haftung des Seitenbetreibers wird für die durch solche Sicherheitslücken entstehenden Schäden oder Unterlassungsansprüche ausgeschlossen.</p>
+    <p>Der Nutzung von allen veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung wird widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.</p>
+    <p>
+        <strong>
+            Quelle: S&K Rechtsanwälte
+            <a href="http://www.streifler.de/">www.streifler.de</a>
+        </strong>
+    </p>
+    <h1>Gestaltung</h1>
+    <ul>
+        <li>
+            <a href="http://bleystift.de">Maxi Bley . www.bleystift.de</a>
+            - Screendesign
+        </li>
+        <li>
+            <a href="http://48augen.de">Michael Haschke - 48augen Webentwicklung</a>
+            - Umsetzung HTML/CSS
+        </li>
+    </ul>
+</div>

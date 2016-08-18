@@ -15,8 +15,9 @@ layout: aksw_org_default
             {% include nav-sidelinks.html entity_list=resultset%}
             </li>
             <li><strong class="headline">featured projects</strong>
-            {% assign query= "SELECT ?resUri WHERE { ?resUri <http://aksw.org/schema/promoted> '1'^^xsd:integer.}" %}
+            {% assign query= "SELECT ?resUri WHERE { ?resUri <http://aksw.org/schema/promoted> '1'}" %}
             {% assign resultset = page.rdf | sparql_query: query %}
+            <p>{{query}}</p>
             {% include nav-sidelinks.html entity_list=resultset%}
             </li>
         </ul>

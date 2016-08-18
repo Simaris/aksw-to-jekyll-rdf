@@ -55,8 +55,10 @@
                     for (var i = 0; i < result.feed.entries.length; i++) {
                         var entry = result.feed.entries[i];
                         var h2 = $("<h2></h2>");
-                        h2.append('<a href=""> ' + entry.title + '</a> ');
+                        h2.append('<a href="'+entry.link+'"> ' + entry.title + '</a> ');
+                        console.log(JSON.stringify(entry, null, 4));
                         container.append(h2);
+                        container.append(entry.content);
                     }
                 }
             });
@@ -108,17 +110,17 @@
                     </nav>
                     <nav id="nav-top">
                         <ul>
-                            <li>
-                                <a href="">Contact</a>
+                            <li id="contact">
+                                <a href="/rdfsites/http/aksw/org/Contact/index.html">Contact</a>
                             </li>
                             <li>
-                                <a href="">Blog</a>
-                            </li>
+                                <a href="http://blog.aksw.org">Blog</a>
+                            </li>  <!-- toDo: address eventually changes -->
                             <li>
-                                <a href="">Internal Area</a>
+                                <a href="http://wiki.aksw.org/Internal">Internal Area</a>
                             </li>
-                            <li>
-                                <a href="">Imprint</a>
+                            <li id="imprint">
+                                <a href="/rdfsites/http/aksw/org/Imprint/index.html">Imprint</a>
                             </li>                            
                         </ul>
                     </nav>
@@ -186,31 +188,31 @@
                 </section>
             </div>
             <div id="fancybox-tmp"></div>
-                <div id="fancybox-loading">
-                    <div></div>
+            <div id="fancybox-loading">
+                <div></div>
+            </div>
+            <div id="fancybox-overlay"></div>
+            <div id="fancybox-wrap">
+                <div id="fancybox-outer">
+                    <div id="fancybox-bg-n" class="fancybox-bg"></div>
+                    <div id="fancybox-bg-ne" class="fancybox-bg"></div>
+                    <div id="fancybox-bg-e" class="fancybox-bg"></div>
+                    <div id="fancybox-bg-se" class="fancybox-bg"></div>
+                    <div id="fancybox-bg-s" class="fancybox-bg"></div>
+                    <div id="fancybox-bg-sw" class="fancybox-bg"></div>
+                    <div id="fancybox-bg-w" class="fancybox-bg"></div>
+                    <div id="fancybox-bg-nw" class="fancybox-bg"></div>
+                    <div id="fancybox-content"></div>
+                    <a id="fancybox-close"></a>
+                    <div id="fancybox-title"></div>
+                    <a id="fancybox-left" href="javascript:;">
+                        <span id="fancybox-left-ico" class="fancy-ico"></span>
+                    </a>
+                    <a id="fancybox-right" href="javascript:;">
+                        <span id="fancybox-right-ico" class="fancy-ico"></span>
+                    </a>
                 </div>
-                <div id="fancybox-overlay"></div>
-                <div id="fancybox-wrap">
-                    <div id="fancybox-outer">
-                        <div id="fancybox-bg-n" class="fancybox-bg"></div>
-                        <div id="fancybox-bg-ne" class="fancybox-bg"></div>
-                        <div id="fancybox-bg-e" class="fancybox-bg"></div>
-                        <div id="fancybox-bg-se" class="fancybox-bg"></div>
-                        <div id="fancybox-bg-s" class="fancybox-bg"></div>
-                        <div id="fancybox-bg-sw" class="fancybox-bg"></div>
-                        <div id="fancybox-bg-w" class="fancybox-bg"></div>
-                        <div id="fancybox-bg-nw" class="fancybox-bg"></div>
-                        <div id="fancybox-content"></div>
-                        <a id="fancybox-close"></a>
-                        <div id="fancybox-title"></div>
-                        <a id="fancybox-left" href="javascript:;">
-                            <span id="fancybox-left-ico" class="fancy-ico"></span>
-                        </a>
-                        <a id="fancybox-right" href="javascript:;">
-                            <span id="fancybox-right-ico" class="fancy-ico"></span>
-                        </a>
-                    </div>
-                </div>
+            </div>
         </div>
     </body>
 </html>

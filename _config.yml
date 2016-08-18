@@ -43,3 +43,5 @@ jekyll_rdf:
     "http://aksw.org/Partners" : "aksw.org.partners.html"
     "http://aksw.org/Publications" : "aksw.org.publications.html"
     "http://aksw.org/Teaching" : "aksw.org.teaching.html"
+    "http://aksw.org/Contact" : "aksw.org.contacts.html"
+    "http://aksw.org/Imprint" : "aksw.org.imprint.html"
