@@ -43,7 +43,9 @@
 
         <script type="text/javascript" src="https://www.google.com/jsapi"></script>   
         <script type="text/javascript" src="{{ "/js/jquery.timeago.js" | prepend: site.baseurl }}"></script>
-        <script src="http://api.simile-widgets.org/exhibit/STABLE/exhibit-api.js" ></script> 
+<!--        <script type="text/javascript" src="{{ "/js/exhibit3/dist/exhibit-api.js?bundle=false" | prepend: site.baseurl }}" -->
+        <script src="http://api.simile-widgets.org/exhibit/3.0.0rc1/exhibit-api.js" type="text/javascript"></script> 
+<!--        <script src="http://static.simile.mit.edu/exhibit/api-2.0/exhibit-api.js" type="text/javascript"></script> -->
         <link href="{{ "/bibsonomy/group_aksw.json" | prepend: site.baseurl }}" rel="exhibit-data" />
         
         <script type="text/javascript">
@@ -52,7 +54,7 @@
 
         function initialize() {
             var feed = new google.feeds.Feed("http://blog.aksw.org/feed/?cat=5&client=OntoWiki&version=0.9.12&suffix=git");
-            console.log("feed: "+feed);
+            //console.log("feed: "+feed);
             feed.load(function(result) {
                 if (!result.error) {
                     var container = $("#feeds>.content");
@@ -60,7 +62,7 @@
                         var entry = result.feed.entries[i];
                         var h2 = $("<h2></h2>");
                         h2.append('<a href="'+entry.link+'"> ' + entry.title + '</a> ');
-                        console.log(JSON.stringify(entry, null, 4));
+                        //console.log(JSON.stringify(entry, null, 4));
                         var timeStamp = $("<span class='meta'></span>");
                         timeStamp.append("<abbr class='timeago' title='" + new Date(entry.publishedDate).toUTCString() + "'></abbr>");
                         timeStamp.append(" "+entry.author);

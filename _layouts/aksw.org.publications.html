@@ -22,4 +22,27 @@ layout: aksw_org_default
         .
     </p> 
 </div>
-<div data-ex-role="view"></div>
+<div ex:role="exhibit-lens">
+    <strong>
+        <span ex:content="if(exists(.uri), concat('<a href=', .uri, '>', .label, '</a>'), .label)"></span> <!-- <a> element -->
+        <span>
+            <span class="author" ex:content=".author"></span>
+        </span>
+    </strong>
+    <span class="meta">
+        <span ex:content="if(exists(.booktitle), concat('<em>in</em> ', .booktitle), '')"></span>
+        <span class="journal" ex:content="if(exists(.journal), concat('<em>in</em> ', .journal), '')"></span>
+        <a ex:href-content=".id">
+            [BibTex
+            <span class="hideme">
+                of
+                <span ex:content=".label">
+                </span>
+            </span>
+            ]
+        </a>
+    </span>
+    <span class="note" ex:content="if(exists(.note), concat('<br/><em>Note:</em> ', .note), '')"></span>
+    <span class="abstract" ex:content="if(exists(.abstract), concat('<br/><details><summary>Abstract:</summary> ', .abstract, '</details>'), '')"></span>
+</div>
+<div ex:role="exhibit-view" ex:showduplicates="false" ex:showsummary="true" ex:directions="descending,ascending" ex:orders=".year,.label" ex:grouped="false"></div>
