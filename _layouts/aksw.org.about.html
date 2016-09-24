@@ -15,9 +15,8 @@ layout: aksw_org_default
             {% include nav-sidelinks.html entity_list=resultset%}
             </li>
             <li><strong class="headline">featured projects</strong>
-            {% assign query= "SELECT ?resUri WHERE { ?resUri <http://aksw.org/schema/promoted> '1'}" %}
+            {% assign query= "SELECT ?resUri WHERE { ?resUri <http://aksw.org/schema/promoted> 1}" %}
             {% assign resultset = page.rdf | sparql_query: query %}
-            <p>{{query}}</p>
             {% include nav-sidelinks.html entity_list=resultset%}
             </li>
         </ul>
@@ -93,6 +92,7 @@ layout: aksw_org_default
                                 <span class="hookline" property="http://aksw.org/schema/hookline">{{result.sub | rdf_property: 'http://aksw.org/schema/hookline'}}</span>
                             </h2>
                             <a class="demowheel-image" href="{{result.sub}}">
+                                <img src="{{result.sub | rdf_property: 'http://open.vocab.org/terms/screenshot'}}" resource="{{result.sub | rdf_property: 'http://open.vocab.org/terms/screenshot'}}" about="{{result.sub}}" alt="screenshot">
                             </a>
                         </li>
                         {% assign oddEven = 0 %}
