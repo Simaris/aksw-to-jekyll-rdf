@@ -30,7 +30,7 @@ jekyll_rdf:
   restriction: "SELECT ?resourceUri WHERE { ?resourceUri ?p ?o}"
   default_template: "rdf_index.html"
   template_mappings:
-    "http://xmlns.com/foaf/0.1/Person": "person2.html"
+    
     "https://www.my.dummy.resource.com/DummyX": "myCustomTestTemplate.html"
     "http://www.ifi.uio.no/INF3580/simpsons#Abraham": "abraham.html" 
     "http://aksw.org/": "aksw.org.html"
@@ -45,3 +45,7 @@ jekyll_rdf:
     "http://aksw.org/Teaching" : "aksw.org.teaching.html"
     "http://aksw.org/Contact" : "aksw.org.contacts.html"
     "http://aksw.org/Imprint" : "aksw.org.imprint.html"
+  template_classes:
+    "http://xmlns.com/foaf/0.1/Person" : "person2.html"
+    "http://aksw.org/StudentWorker" : "personStud.html"
+  

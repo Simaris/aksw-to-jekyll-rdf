@@ -7536,7 +7536,7 @@ aksw:status a owl:DatatypeProperty ;
                                 rdfs:label "[Office Leipzig]" ;
                                 vcard2006:adr <http://aksw.org/Address/vCard/Augustusplatz10> .
 
-<http://aksw.org/view/r/schema:ProfilePage> rdfs:label "http://schema.org/ProfilePage" .
+<http://aksw.org/view/r/schema/ProfilePage> rdfs:label "http://schema.org/ProfilePage" .
 
 <http://api.ontowiki.net> a foaf:Document ;
                           rdfs:label "API Documentation" ;
@@ -7578,7 +7578,7 @@ ns1:facete a aksw:Demo ;
                                                       aksw:buttonLabel "@DBLP" ;
                                                       foaf:primaryTopic aksworg:NatanaelArndt .
 
-<http://dblp.uni-trier.de/pers/hd/m/M=uuml=ller:Kay> a schema:ProfilePage ;
+<http://dblp.uni-trier.de/pers/hd/m/M=uuml=ller/Kay> a schema:ProfilePage ;
                                                      aksw:buttonLabel "@DBLP" ;
                                                      foaf:primaryTopic aksworg:KayMueller .
 
@@ -8062,7 +8062,7 @@ ns33:id a foaf:Organization ;
                                                                        aksw:buttonLabel "@DBLP" ;
                                                                        foaf:primaryTopic aksworg:AliKhalili .
 
-<http://www.informatik.uni-trier.de/~ley/pers/hd/k/Kontokostas:Dimitris.html> a schema:ProfilePage ;
+<http://www.informatik.uni-trier.de/~ley/pers/hd/k/Kontokostas/Dimitris.html> a schema:ProfilePage ;
                                                                               aksw:buttonLabel "@DBLP" .
 
 <http://www.informatik.uni-trier.de/~ley/pers/hd/m/Martin%3AMichael.html> a schema:ProfilePage ;

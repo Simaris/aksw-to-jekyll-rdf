@@ -1,0 +1,15 @@
+---
+layout: default
+---
+
+<div class="home">
+    <h1>This person is a student: {{page.rdf.name}}</h1>
+    <dl>
+        <dt> Email: </dt>
+        <dd> {{page.rdf | rdf_property: 'http://xmlns.com/foaf/0.1/mbox'}} </dd>
+        <dt>Phone:</dt>
+        <dd>tel:{{page.rdf | rdf_property:'http://xmlns.com/foaf/0.1/phone'}}</dd>
+        <dt>Location:</dt>
+        <dd>{{page.rdf | rdf_property:'http://schema.org/location'}}</dd>
+    </dl>
+</div>
