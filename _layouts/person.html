@@ -1,5 +1,6 @@
 ---
 layout: default
+rdf_prefix_path: TestPrefixes.pref
 ---
 
 <div class="home">
@@ -10,12 +11,12 @@ layout: default
     <tbody>
       <tr>
         <td>Age</td>
-        <td>{{ page.rdf | rdf_property: 'http://xmlns.com/foaf/0.1/age' }} </td>
+        <td>{{ page.rdf | rdf_property: 'foaf:age' }} </td>
       </tr>
       <tr>
-        <td>Sisters</td>
+        <td>Past Jobs Test</td>
         <td>
-          {% assign resultset = page.rdf | rdf_property_list: 'http://www.ifi.uio.no/INF3580/family#hasSister' %}
+          {% assign resultset = page.rdf | rdf_property_list: 'foaf:pastProject' %}
           {% for result in resultset %}
             <ul>{{ result }}</ul>
           {% endfor %}
@@ -26,8 +27,8 @@ layout: default
         <td>{{ page.rdf | rdf_property: 'http://xmlns.com/foaf/0.1/job','en' }}</td>
       </tr>
       <tr>
-        <td>Translated Interest</td>
-        <td>{{ page.rdf | rdf_property: 'http://xmlns.com/foaf/0.1/interest','de' }}</td>
+        <td>mail</td>
+        <td>{{ page.rdf | rdf_property: 'http://xmlns.com/foaf/0.1/mbox','de' }}</td>
       </tr>
     </tbody>
   </table>

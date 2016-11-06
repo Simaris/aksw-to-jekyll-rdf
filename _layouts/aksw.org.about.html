@@ -1,5 +1,6 @@
 ---
 layout: aksw_org_default
+rdf_prefix_path: TestPrefixes.pref
 ---
 
 <header class="intro">
@@ -10,7 +11,7 @@ layout: aksw_org_default
     <nav class="nav-sidelinks">
         <ul>
             <li><strong class="headline">current funded projects</strong>                
-            {% assign query= 'SELECT ?resUri WHERE{ ?resUri a <http://aksw.org/schema/FundedProject>. OPTIONAL {    ?resUri <http://aksw.org/schema/status> ?status   }  FILTER (?status != "finished")}' %}
+            {% assign query= 'SELECT ?resUri WHRE{ ?resUri a aksw:FundedProject. OPTIONAL {    ?resUri <http://aksw.org/schema/status> ?status   }  FILTER (?status != "finished")}' %}
             {% assign resultset = page.rdf | sparql_query: query %}
             {% include nav-sidelinks.html entity_list=resultset%}
             </li>
